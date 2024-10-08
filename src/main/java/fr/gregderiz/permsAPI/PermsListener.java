@@ -16,7 +16,6 @@ public final class PermsListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     private void PlayerJoin(PlayerJoinEvent event) {
         this.permsManager.register(event.getPlayer());
-        this.permsManager.removePermissions(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
