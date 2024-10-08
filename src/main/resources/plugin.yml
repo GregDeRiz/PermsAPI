@@ -1,0 +1,7 @@
+name: PermsAPI
+version: '1.0-SNAPSHOT'
+main: fr.gregderiz.permsAPI.PermsPlugin
+api-version: '1.20'
+load: STARTUP
+authors: [ GregDeRiz ]
+description: A plugin that manage player's permissions
