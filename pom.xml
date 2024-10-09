@@ -6,7 +6,7 @@
 
     <groupId>fr.gregderiz</groupId>
     <artifactId>permsapi</artifactId>
-    <version>0.7</version>
+    <version>0.8</version>
     <packaging>jar</packaging>
 
     <name>permsapi</name>
