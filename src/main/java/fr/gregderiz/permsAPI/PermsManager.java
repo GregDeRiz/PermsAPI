@@ -21,21 +21,21 @@ public final class PermsManager {
     }
 
     public boolean hasPermission(Player player, String permission) {
-        return this.permissions.get(player.getUniqueId()).contains(permission);
+        if (!isPlayerRegistered(player)) return false;
+        return getPermissionsByPlayer(player).contains(permission);
     }
 
     public void addPermission(Player player, String permission) {
-        if (!this.isPlayerRegistered(player)) this.permissions.put(player.getUniqueId(), Sets.newHashSet());
         if (hasPermission(player, permission)) return;
 
-        this.permissions.get(player.getUniqueId()).add(permission);
+        this.permissions.put(player.getUniqueId(), Sets.newHashSet());
+        getPermissionsByPlayer(player).add(permission);
     }
 
     public void removePermission(Player player, String permission) {
-        if (!this.isPlayerRegistered(player)) return;
         if (!hasPermission(player, permission)) return;
 
-        this.permissions.get(player.getUniqueId()).remove(permission);
+        getPermissionsByPlayer(player).remove(permission);
     }
 
     public void removePermissions(Player player) {
@@ -44,6 +44,10 @@ public final class PermsManager {
 
     public Map<UUID, Set<String>> getPermissions() {
         return this.permissions;
+    }
+
+    public Set<String> getPermissionsByPlayer(Player player) {
+        return this.permissions.get(player.getUniqueId());
     }
 
     public void destroy() {
