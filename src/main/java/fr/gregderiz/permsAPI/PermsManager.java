@@ -25,10 +25,15 @@ public final class PermsManager {
         return getPermissionsByPlayer(player).contains(permission);
     }
 
+    public void register(Player player) {
+        if (isPlayerRegistered(player)) return;
+
+        this.permissions.put(player.getUniqueId(), Sets.newHashSet());
+    }
+
     public void addPermission(Player player, String permission) {
         if (hasPermission(player, permission)) return;
 
-        this.permissions.put(player.getUniqueId(), Sets.newHashSet());
         getPermissionsByPlayer(player).add(permission);
     }
 
@@ -38,7 +43,7 @@ public final class PermsManager {
         getPermissionsByPlayer(player).remove(permission);
     }
 
-    public void removePermissions(Player player) {
+    public void unRegister(Player player) {
         this.permissions.remove(player.getUniqueId());
     }
 
@@ -55,7 +60,7 @@ public final class PermsManager {
             Player player = Bukkit.getPlayer(uuid);
             if (player == null || !player.isOnline()) continue;
 
-            removePermissions(player);
+            unRegister(player);
         }
     }
 }
